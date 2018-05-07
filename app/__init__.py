@@ -3,15 +3,40 @@ from app.main import main
 from app.info import info
 from flask_bootstrap import  Bootstrap
 from flask_sqlalchemy import SQLAlchemy
-
-
+import config
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='hellow'
 bootstrap = Bootstrap(app)
-db = SQLAlchemy()
+app.config.from_object(config)
+db = SQLAlchemy(app)
+#创建表
+class Article(db.Model):#继承db.Model
+    __tablemame__='article'#表名
+    id=db.Column(db.Integer,primary_key=True,autoincrement=True)
+    title = db.Column(db.String(100),nullable=False)
+    content = db.Column(db.Text,nullable=False)
+db.create_all() #执行
+
+#
+# conn = pymysql.Connect(host='127.0.0.1',port=3307,user='root',passwd='welcome',db='pythontest',charset='utf8')
+# cursor = conn.cursor()
+# sql = 'select * from person'
+# cursor.execute(sql)
+# # rs = cursor.fetchone()
+# # print("rs:",rs)
+# #
+# # for each in cursor.fetchmany(2):
+# #     print(each)
+# # print()
+# for each in cursor.fetchall():
+#     print(each)
+
+
+
 @app.route('/')
 def index():
+
     return render_template('index.html'),200
 
 app.register_blueprint(main,url_prefix='/hello')
