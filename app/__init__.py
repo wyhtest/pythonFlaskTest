@@ -19,10 +19,12 @@ def create_app(config_name):
     bootstrap.init_app(app)
     db.init_app(app)
 
-    app.register_blueprint(main,url_prefix='/hello')
+    app.register_blueprint(main)
 
     app.register_blueprint(info,url_prefix='/hi')
     return  app
+
+
 
 # #创建表
 # class Article(db.Model):#继承db.Model
