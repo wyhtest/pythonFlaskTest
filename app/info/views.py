@@ -1,4 +1,4 @@
-from . import info,forms
+from .import info,forms
 from flask import render_template
 
 @info.route('/info/', methods=['GET', 'POST'])

@@ -1,7 +1,7 @@
 from flask import Flask,render_template
 from app.main import main
 from app.info import info
-from flask_bootstrap import  Bootstrap
+from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from config import config
 import pymysql
